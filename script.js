@@ -20,30 +20,108 @@ function mostrarMensaje(texto, tipo) {
 }
 
 
-btnRegistrar.addEventListener("click", 
-    function () {
+btnRegistrar.addEventListener(
+    "click",
+    async function () {
 
-    const nombre = inputNombre.value;
-    const password = inputPassword.value;
+        const nombre = inputNombre.value;
+        const password = inputPassword.value;
 
-    console.log("Registrar:", nombre, password);
+        const respuesta = await fetch(
+            "http://127.0.0.1:5000/registrar",
+            {
+                method: "POST",
 
-    mostrarMensaje(
-        "Esto luego lo responderá el backend",
-        "info"
-    );
-});
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+                    nombre: nombre,
+                    password: password
+                })
+            }
+        );
+
+        const datos = await respuesta.json();
+
+        if (datos.estado === "ok") {
+
+            mostrarMensaje(
+                "Usuario creado correctamente",
+                "exito"
+            );
+
+        } else {
+
+            mostrarMensaje(
+                "Este usuario ya existe",
+                "info"
+            );
+
+        }
+
+    }
+);
 
 btnLogin.addEventListener("click", 
-    function () {
+    async function () {
 
-    const nombre = inputNombre.value;
-    const password = inputPassword.value;
+        const nombre = inputNombre.value;
+        const password = inputPassword.value;
 
-    console.log("Login:", nombre, password);
+        const respuesta = await fetch(
+            "http://localhost:5000/login",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    nombre: nombre,
+                    password: password
+                })
+            }
+        )
 
-    mostrarMensaje(
-        "Esto luego lo responderá el backend",
-        "info"
+        const datos = await respuesta.json();
+
+    if (datos.estado === "ok") {
+
+            mostrarMensaje(
+                "Conectado exitosamente", 
+                "exito"
+            );
+    } else {
+            
+            mostrarMensaje(
+                "Usuario o contraseña invalidos",
+                "error"
+            )
+    }
+    });
+
+async function probarAPI() {
+
+    const respuesta = await fetch(
+        "http://127.0.0.1:5000/login",
+        {
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                nombre: "Tobias",
+                password: "1234"
+            })
+        }
     );
-});
+
+    const datos = await respuesta.json();
+
+    console.log(datos);
+}
+
+probarAPI();
