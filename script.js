@@ -95,7 +95,7 @@ btnLogin.addEventListener("click",
     } else {
             
             mostrarMensaje(
-                "Usuario o contraseña invalidos",
+                "Usuario y/o contraseña inválidos",
                 "error"
             )
     }

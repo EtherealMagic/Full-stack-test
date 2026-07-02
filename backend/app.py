@@ -1,5 +1,8 @@
 from flask import Flask, request
 import sqlite3
+from crear_db import crear_base
+
+crear_base()
 
 app = Flask(__name__)
 
@@ -14,7 +17,7 @@ def registrar():
 
     datos = request.get_json()
 
-    nombre = datos["nombre"]
+    nombre = datos["nombre"].lower()
     password = datos["password"]
 
     conexion = sqlite3.connect("usuarios.db")
@@ -52,7 +55,7 @@ def login():
 
     datos = request.get_json()
 
-    nombre = datos["nombre"]
+    nombre = datos["nombre"].lower()
     password = datos["password"]
 
     conexion = sqlite3.connect("usuarios.db")
