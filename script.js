@@ -1,4 +1,4 @@
-// Obtenemos referencias a los elementos del HTML
+const url = "http://localhost:5000"
 const inputNombre = document.getElementById("nombre");
 const inputPassword = document.getElementById("password");
 
@@ -36,7 +36,7 @@ btnRegistrar.addEventListener(
 
         if (nombre && password)
         {    const respuesta = await fetch(
-                "http://127.0.0.1:5000/registrar",
+                url.concat("","/registrar"),
                 {
                     method: "POST",
 
@@ -82,7 +82,7 @@ btnLogin.addEventListener("click",
         const password = inputPassword.value;
         if (nombre && password) {
             const respuesta = await fetch(
-                "http://localhost:5000/login",
+                url.concat("","/login"),
                 {
                     method: "POST",
                     headers: {
@@ -115,28 +115,3 @@ btnLogin.addEventListener("click",
                 inputPassword.value="";
         }
     }});
-
-async function probarAPI() {
-
-    const respuesta = await fetch(
-        "http://127.0.0.1:5000/login",
-        {
-            method: "POST",
-
-            headers: {
-                "Content-Type": "application/json"
-            },
-
-            body: JSON.stringify({
-                nombre: "Tobias",
-                password: "1234"
-            })
-        }
-    );
-
-    const datos = await respuesta.json();
-
-    console.log(datos);
-}
-
-probarAPI();
