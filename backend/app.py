@@ -1,8 +1,6 @@
 from flask import Flask, request
 import sqlite3
-from crear_db import crear_base
-
-crear_base()
+from werkzeug import security
 
 app = Flask(__name__)
 
@@ -18,7 +16,8 @@ def registrar():
     datos = request.get_json()
 
     nombre = datos["nombre"].lower()
-    password = datos["password"]
+    password = security.generate_password_hash(datos["password"], method="scrypt", salt_length=16)
+
 
     conexion = sqlite3.connect("usuarios.db")
     cursor = conexion.cursor()
@@ -81,7 +80,7 @@ def login():
             "mensaje": "Usuario no existe"
         }
 
-    if usuario[0] != password:
+    if not security.check_password_hash(usuario[0], password):
 
         return {
             "estado": "error",

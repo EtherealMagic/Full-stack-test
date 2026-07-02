@@ -7,7 +7,6 @@ const btnLogin = document.getElementById("btnLogin");
 
 const mensaje = document.getElementById("mensaje");
 
-
 function mostrarMensaje(texto, tipo) {
 
     mensaje.textContent = texto;
@@ -17,6 +16,14 @@ function mostrarMensaje(texto, tipo) {
     mensaje.classList.add(tipo);
 
     mensaje.style.display = "block";
+
+    setTimeout(() => {
+
+        mensaje.textContent = "";
+        mensaje.className = "";
+        mensaje.style.display = "none";
+
+    }, 1000);
 }
 
 
@@ -27,41 +34,45 @@ btnRegistrar.addEventListener(
         const nombre = inputNombre.value;
         const password = inputPassword.value;
 
-        const respuesta = await fetch(
-            "http://127.0.0.1:5000/registrar",
-            {
-                method: "POST",
+        if (nombre && password)
+        {    const respuesta = await fetch(
+                "http://127.0.0.1:5000/registrar",
+                {
+                    method: "POST",
 
-                headers: {
-                    "Content-Type": "application/json"
-                },
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
 
-                body: JSON.stringify({
-                    nombre: nombre,
-                    password: password
-                })
+                    body: JSON.stringify({
+                        nombre: nombre,
+                        password: password
+                    })
+                }
+            );
+
+            const datos = await respuesta.json();
+
+            if (datos.estado === "ok") {
+
+                mostrarMensaje(
+                    "Usuario creado correctamente",
+                    "exito"
+                );
+                inputNombre.value="";
+                inputPassword.value="";
+
+            } else {
+
+                mostrarMensaje(
+                    "Este usuario ya existe",
+                    "info"
+                );
+                inputNombre.value="";
+                inputPassword.value="";
             }
-        );
 
-        const datos = await respuesta.json();
-
-        if (datos.estado === "ok") {
-
-            mostrarMensaje(
-                "Usuario creado correctamente",
-                "exito"
-            );
-
-        } else {
-
-            mostrarMensaje(
-                "Este usuario ya existe",
-                "info"
-            );
-
-        }
-
-    }
+        }}
 );
 
 btnLogin.addEventListener("click", 
@@ -69,37 +80,41 @@ btnLogin.addEventListener("click",
 
         const nombre = inputNombre.value;
         const password = inputPassword.value;
-
-        const respuesta = await fetch(
-            "http://localhost:5000/login",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    nombre: nombre,
-                    password: password
-                })
-            }
-        )
-
-        const datos = await respuesta.json();
-
-    if (datos.estado === "ok") {
-
-            mostrarMensaje(
-                "Conectado exitosamente", 
-                "exito"
-            );
-    } else {
-            
-            mostrarMensaje(
-                "Usuario y/o contraseña inválidos",
-                "error"
+        if (nombre && password) {
+            const respuesta = await fetch(
+                "http://localhost:5000/login",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        nombre: nombre,
+                        password: password
+                    })
+                }
             )
-    }
-    });
+
+            const datos = await respuesta.json();
+
+        if (datos.estado === "ok") {
+
+                mostrarMensaje(
+                    "Conectado exitosamente", 
+                    "exito"
+                );
+                inputNombre.value="";
+                inputPassword.value="";
+        } else {
+                
+                mostrarMensaje(
+                    "Usuario y/o contraseña inválidos",
+                    "error"
+                );
+                inputNombre.value="";
+                inputPassword.value="";
+        }
+    }});
 
 async function probarAPI() {
 

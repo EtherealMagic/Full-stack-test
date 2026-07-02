@@ -2,7 +2,7 @@ import sqlite3
 
 def crear_base():
 
-    conexion = sqlite3.connect("usuarios.db")
+    conexion = sqlite3.connect("backend/usuarios.db")
     cursor = conexion.cursor()
 
     cursor.execute("""
@@ -15,3 +15,5 @@ def crear_base():
 
     conexion.commit()
     conexion.close()
+
+crear_base()
