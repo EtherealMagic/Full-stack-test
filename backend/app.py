@@ -1,96 +1,42 @@
 from flask import Flask, request
-import sqlite3
-from werkzeug import security
+from db import crear_base, registrar_en_base, logear_en_base
 
 app = Flask(__name__)
-
-
-@app.route("/")
-def inicio():
-    return "Backend funcionando"
-
 
 @app.route("/registrar", methods=["POST"])
 def registrar():
 
     datos = request.get_json()
 
-    nombre = datos["nombre"].lower()
-    password = security.generate_password_hash(datos["password"], method="scrypt", salt_length=16)
+    nombre = datos["nombre"]
+    password = datos["password"]
 
-
-    conexion = sqlite3.connect("usuarios.db")
-    cursor = conexion.cursor()
-
-    try:
-
-        cursor.execute(
-            """
-            INSERT INTO usuarios(nombre, password)
-            VALUES (?, ?)
-            """,
-            (nombre, password)
-        )
-
-        conexion.commit()
-
+    if registrar_en_base(nombre, password):
         return {
-            "estado": "ok",
-            "mensaje": "Usuario creado"
+            "estado" : "ok"
         }
-
-    except sqlite3.IntegrityError:
-
+    else:
         return {
-            "estado": "error",
-            "mensaje": "Usuario ya existe"
+            "esatado" : "error"
         }
-
-    finally:
-        conexion.close()
 
 @app.route("/login", methods=["POST"])
 def login():
 
     datos = request.get_json()
 
-    nombre = datos["nombre"].lower()
+    nombre = datos["nombre"]
     password = datos["password"]
 
-    conexion = sqlite3.connect("usuarios.db")
-    cursor = conexion.cursor()
-
-    cursor.execute(
-        """
-        SELECT password
-        FROM usuarios
-        WHERE nombre = ?
-        """,
-        (nombre,)
-    )
-
-    usuario = cursor.fetchone()
-
-    conexion.close()
-
-    if usuario is None:
-
+    if logear_en_base(nombre, password):
         return {
-            "estado": "error",
-            "mensaje": "Usuario no existe"
+            "estado" : "ok"
         }
-
-    if not security.check_password_hash(usuario[0], password):
-
+    else: 
         return {
-            "estado": "error",
-            "mensaje": "Contraseña incorrecta"
+            "estado" : "error"
         }
-
-    return {
-        "estado": "ok",
-        "mensaje": "Inicio de sesión correcto"
-    }
+    
 
 if __name__ == "__main__":
     app.run(debug=True)
