@@ -1,4 +1,5 @@
 from flask import Flask, request
+import sqlite3
 
 app = Flask(__name__)
 
@@ -13,12 +14,81 @@ def registrar():
 
     datos = request.get_json()
 
-    print(datos)
+    nombre = datos["nombre"]
+    password = datos["password"]
+
+    conexion = sqlite3.connect("usuarios.db")
+    cursor = conexion.cursor()
+
+    try:
+
+        cursor.execute(
+            """
+            INSERT INTO usuarios(nombre, password)
+            VALUES (?, ?)
+            """,
+            (nombre, password)
+        )
+
+        conexion.commit()
+
+        return {
+            "estado": "ok",
+            "mensaje": "Usuario creado"
+        }
+
+    except sqlite3.IntegrityError:
+
+        return {
+            "estado": "error",
+            "mensaje": "Usuario ya existe"
+        }
+
+    finally:
+        conexion.close()
+
+@app.route("/login", methods=["POST"])
+def login():
+
+    datos = request.get_json()
+
+    nombre = datos["nombre"]
+    password = datos["password"]
+
+    conexion = sqlite3.connect("usuarios.db")
+    cursor = conexion.cursor()
+
+    cursor.execute(
+        """
+        SELECT password
+        FROM usuarios
+        WHERE nombre = ?
+        """,
+        (nombre,)
+    )
+
+    usuario = cursor.fetchone()
+
+    conexion.close()
+
+    if usuario is None:
+
+        return {
+            "estado": "error",
+            "mensaje": "Usuario no existe"
+        }
+
+    if usuario[0] != password:
+
+        return {
+            "estado": "error",
+            "mensaje": "Contraseña incorrecta"
+        }
 
     return {
-        "mensaje": "Datos recibidos correctamente"
+        "estado": "ok",
+        "mensaje": "Inicio de sesión correcto"
     }
-
 
 if __name__ == "__main__":
     app.run(debug=True)
