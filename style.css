@@ -16,37 +16,44 @@ body {
 }
 
 .animacion1 {
-    animation-duration: 3s;
+    animation-duration: 2s;
     animation-delay: 1s;
     animation-name: desvanecer;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
 } 
 .animacion2 {
-    animation-duration: 3s;
-    animation-delay: 1s;
+    animation-duration: 2s;
     animation-name: degradado;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
 }
 .animacion3 {
-    animation-duration: 1500ms;
+    animation-duration: 1s;
     animation-name: aparecer;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
-} 
+}
+
+.animacion4 {
+    animation-duration: 2s;
+    animation-name: degradado2;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
 
 @keyframes desvanecer {
     from {
         opacity: 1;
     } to {
         opacity: 0;
+        margin-bottom: 40%;
     }
 }
 
 @keyframes degradado {
     from {
-        background-color: white;
+        background-color: #f0f2f5;
     } to {
         background-color: blueviolet;
     }
@@ -55,8 +62,17 @@ body {
 @keyframes aparecer {
     from {
         opacity: 0;
+        
     } to {
         opacity: 1;
+    }
+}
+
+@keyframes degradado2 {
+    from {
+        background-color: blueviolet;
+    } to {
+        background-color: #f0f2f5;
     }
 }
 

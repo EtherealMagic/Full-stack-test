@@ -4,6 +4,7 @@ const inputPassword = document.getElementById("password");
 
 const btnRegistrar = document.getElementById("btnRegistrar");
 const btnLogin = document.getElementById("btnLogin");
+const btnCerrarSesion = document.getElementById("btnCerrarSesion");
 
 const mensaje = document.getElementById("mensaje");
 const contenedor = document.getElementById("previo");
@@ -108,14 +109,18 @@ btnLogin.addEventListener("click",
                 );
                 inputNombre.value="";
                 inputPassword.value="";
+                contenedor.classList.remove("animacion3")
+                contenedor2.classList.remove("animacion1")
+
                 contenedor.classList.add("animacion1");
-                fondo.classList.add("animacion2");
                 setTimeout(() => {
                     contenedor2.classList.remove('oculto');
                     contenedor.classList.add('oculto');
                     contenedor2.classList.add('animacion3')
                     usuario.textContent = inputNombre;
-                }, 4000);
+                    fondo.classList.remove("animacion4")
+                    fondo.classList.add("animacion2");
+                }, 3000);
                 
                 
         } else {
@@ -128,3 +133,21 @@ btnLogin.addEventListener("click",
                 inputPassword.value="";
         }
     }});
+
+
+btnCerrarSesion.addEventListener("click",
+    function() {
+        contenedor2.classList.remove("animacion3");
+        contenedor.classList.remove("animacion1");
+        fondo.classList.remove("animacion2");
+
+        contenedor2.classList.add("animacion1");
+        fondo.classList.add("animacion4");
+        setTimeout(() => {
+            contenedor2.classList.add("oculto");
+            contenedor.classList.remove("oculto");
+            contenedor.classList.add("animacion3");
+            usuario.textContent="";
+        },3000)
+    }
+)
