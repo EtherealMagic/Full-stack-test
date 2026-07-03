@@ -6,6 +6,10 @@ const btnRegistrar = document.getElementById("btnRegistrar");
 const btnLogin = document.getElementById("btnLogin");
 
 const mensaje = document.getElementById("mensaje");
+const contenedor = document.getElementById("previo");
+const contenedor2 = document.getElementById("posterior");
+const usuario = document.getElementById("usuario");
+const fondo = document.body;
 
 function mostrarMensaje(texto, tipo) {
 
@@ -22,8 +26,7 @@ function mostrarMensaje(texto, tipo) {
         mensaje.textContent = "";
         mensaje.className = "";
         mensaje.style.display = "none";
-
-    }, 1000);
+    }, 4000);
 }
 
 
@@ -105,6 +108,16 @@ btnLogin.addEventListener("click",
                 );
                 inputNombre.value="";
                 inputPassword.value="";
+                contenedor.classList.add("animacion1");
+                fondo.classList.add("animacion2");
+                setTimeout(() => {
+                    contenedor2.classList.remove('oculto');
+                    contenedor.classList.add('oculto');
+                    contenedor2.classList.add('animacion3')
+                    usuario.textContent = inputNombre;
+                }, 4000);
+                
+                
         } else {
                 
                 mostrarMensaje(

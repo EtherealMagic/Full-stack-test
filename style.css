@@ -15,6 +15,55 @@ body {
     height: 100vh;
 }
 
+.animacion1 {
+    animation-duration: 3s;
+    animation-delay: 1s;
+    animation-name: desvanecer;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+} 
+.animacion2 {
+    animation-duration: 3s;
+    animation-delay: 1s;
+    animation-name: degradado;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+.animacion3 {
+    animation-duration: 1500ms;
+    animation-name: aparecer;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+} 
+
+@keyframes desvanecer {
+    from {
+        opacity: 1;
+    } to {
+        opacity: 0;
+    }
+}
+
+@keyframes degradado {
+    from {
+        background-color: white;
+    } to {
+        background-color: blueviolet;
+    }
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+    } to {
+        opacity: 1;
+    }
+}
+
+.oculto {
+    display: none;
+}
+
 .contenedor {
     background-color: white;
 
@@ -81,6 +130,11 @@ h1 {
 
 #btnLogin {
     background-color: #2196f3;
+    color: white;
+}
+
+#btnCerrarSesion {
+    background-color: red;
     color: white;
 }
 

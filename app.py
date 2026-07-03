@@ -17,7 +17,7 @@ def registrar():
         }
     else:
         return {
-            "esatado" : "error"
+            "estado" : "error"
         }
 
 @app.route("/login", methods=["POST"])
