@@ -1,4 +1,4 @@
-const url = "http://localhost:5000"
+const url = "https://full-stack-test-bz77.onrender.com"
 const inputNombre = document.getElementById("nombre");
 const inputPassword = document.getElementById("password");
 
