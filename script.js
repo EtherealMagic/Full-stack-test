@@ -11,6 +11,7 @@ const contenedor = document.getElementById("previo");
 const contenedor2 = document.getElementById("posterior");
 const usuario = document.getElementById("usuario");
 const fondo = document.body;
+const nombre = inputNombre.value
 
 function mostrarMensaje(texto, tipo) {
 
@@ -117,7 +118,7 @@ btnLogin.addEventListener("click",
                     contenedor2.classList.remove('oculto');
                     contenedor.classList.add('oculto');
                     contenedor2.classList.add('animacion3')
-                    usuario.textContent = inputNombre;
+                    usuario.textContent = `Hola ${nombre}, por ahora no hay nada que ver por aqui.`;
                     fondo.classList.remove("animacion4")
                     fondo.classList.add("animacion2");
                 }, 3000);
