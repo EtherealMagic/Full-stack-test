@@ -11,9 +11,9 @@ Mi primer proyecto en desarrollo web para probar las distintas etapas de un desa
 7) Testear casos
 
 ## Requisitos
-- tener python instalado
+- En el documento backend/requirementes.txt
 
 ## Modo de uso
 1) Descargar el repositorio en .zip y descomprimirlo.
 2) Correr por consola "python app.py" y mantener abierto.
-3) Abrir en un IDE "index.html" para ver la pagina.
+3) Abrir "index.html" para ver la pagina.
