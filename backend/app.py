@@ -6,6 +6,8 @@ app = Flask(__name__)
 
 CORS(app)
 
+crear_base()
+
 @app.route("/registrar", methods=["POST"])
 def registrar():
 

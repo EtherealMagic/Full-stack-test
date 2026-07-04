@@ -1,9 +1,13 @@
 import sqlite3
 from werkzeug import security
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent
+ruta = BASE_DIR / "usuarios.db"
 
 def crear_base():
 
-    conexion = sqlite3.connect("usuarios.db")
+    conexion = sqlite3.connect(ruta)
     cursor = conexion.cursor()
 
     cursor.execute("""
@@ -17,10 +21,9 @@ def crear_base():
     conexion.commit()
     conexion.close()
 
-crear_base()
 
 def registrar_en_base(nombre, password):
-    conexion = sqlite3.connect("usuarios.db")
+    conexion = sqlite3.connect(ruta)
     cursor = conexion.cursor()
 
     hashed_pasword = security.generate_password_hash(password, method="scrypt", salt_length=16)
@@ -47,7 +50,7 @@ def registrar_en_base(nombre, password):
         conexion.close()
 
 def logear_en_base(nombre, password): 
-    conexion = sqlite3.connect("usuarios.db")
+    conexion = sqlite3.connect(ruta)
     cursor = conexion.cursor()
 
     cursor.execute(
