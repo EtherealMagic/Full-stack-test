@@ -129,8 +129,8 @@ btnLogin.addEventListener("click",
                     contenedor.classList.add('oculto');
                     contenedor2.classList.add('animacion3')
                     usuario.innerHTML =
-                                    `Hola ${nombre}.<br>
-                                    Cantidad de usuarios registrados actualmente: ${datos.cantidad}.<br>
+                                    `Hola ${nombre}.<br><br>
+                                    Cantidad de usuarios registrados actualmente: ${datos.cantidad}.<br><br>
                                     Esta cantidad puede variar según el tiempo inactivo del servidor.`;
                     fondo.classList.remove("animacion4")
                     fondo.classList.add("animacion2");
