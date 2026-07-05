@@ -55,7 +55,7 @@ body {
     from {
         background-color: #f0f2f5;
     } to {
-        background-color: blueviolet;
+        background-color: lightblue;
     }
 }
 
@@ -70,7 +70,7 @@ body {
 
 @keyframes degradado2 {
     from {
-        background-color: blueviolet;
+        background-color: lightblue;
     } to {
         background-color: #f0f2f5;
     }

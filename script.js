@@ -40,6 +40,11 @@ btnRegistrar.addEventListener(
         const password = inputPassword.value;
 
         if (nombre && password)
+            mostrarMensaje(
+                "Cargando...",
+                "info"
+            );
+
         {    const respuesta = await fetch(
                 url.concat("","/registrar"),
                 {
@@ -86,6 +91,11 @@ btnLogin.addEventListener("click",
         const nombre = inputNombre.value;
         const password = inputPassword.value;
         if (nombre && password) {
+            mostrarMensaje(
+                "Cargando...",
+                "info"
+            );
+
             const respuesta = await fetch(
                 url.concat("","/login"),
                 {
@@ -118,7 +128,7 @@ btnLogin.addEventListener("click",
                     contenedor2.classList.remove('oculto');
                     contenedor.classList.add('oculto');
                     contenedor2.classList.add('animacion3')
-                    usuario.textContent = `Hola ${nombre}, por ahora no hay nada que ver por aqui.`;
+                    usuario.textContent = `Hola ${nombre}, actualmente hay ${datos.cantidad} usuarios registrados en esta pagina. Esta cantidad puede variar según el tiempo inactivo del servidor.`;
                     fondo.classList.remove("animacion4")
                     fondo.classList.add("animacion2");
                 }, 3000);

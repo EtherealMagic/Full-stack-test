@@ -1,6 +1,8 @@
 import sqlite3
+import pandas as pd
 from werkzeug import security
 from pathlib import Path
+
 
 BASE_DIR = Path(__file__).resolve().parent
 ruta = BASE_DIR / "usuarios.db"
@@ -75,3 +77,17 @@ def logear_en_base(nombre, password):
         return False
 
     return True
+
+def consultar_cantidad():
+    conexion = sqlite3.connect(ruta)
+    consulta = pd.read_sql_query(
+        """
+        SELECT COUNT(*) as cantidad
+        FROM usuarios;
+        """, 
+        conexion)
+    return str(consulta["cantidad"][0])
+    
+consultar_cantidad()
+
+    
