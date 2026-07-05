@@ -88,6 +88,4 @@ def consultar_cantidad():
         conexion)
     return str(consulta["cantidad"][0])
     
-consultar_cantidad()
-
     
