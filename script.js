@@ -128,7 +128,10 @@ btnLogin.addEventListener("click",
                     contenedor2.classList.remove('oculto');
                     contenedor.classList.add('oculto');
                     contenedor2.classList.add('animacion3')
-                    usuario.textContent = `Hola ${nombre}, actualmente hay ${datos.cantidad} usuarios registrados en esta pagina. Esta cantidad puede variar según el tiempo inactivo del servidor.`;
+                    usuario.innerHTML =
+                                    `Hola ${nombre}.<br>
+                                    Cantidad de usuarios registrados actualmente: ${datos.cantidad}.<br>
+                                    Esta cantidad puede variar según el tiempo inactivo del servidor.`;
                     fondo.classList.remove("animacion4")
                     fondo.classList.add("animacion2");
                 }, 3000);

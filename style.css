@@ -55,7 +55,7 @@ body {
     from {
         background-color: #f0f2f5;
     } to {
-        background-color: lightblue;
+        background-color: #4caf50;
     }
 }
 
@@ -70,7 +70,7 @@ body {
 
 @keyframes degradado2 {
     from {
-        background-color: lightblue;
+        background-color: #4caf50;
     } to {
         background-color: #f0f2f5;
     }
@@ -96,6 +96,16 @@ h1 {
     text-align: center;
     margin-bottom: 25px;
 }
+
+#usuario {
+    background-color: #d4edda;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-align: center;
+    margin-bottom: 25px;
+    color: #155724;
+} 
 
 .campo {
     margin-bottom: 15px;
