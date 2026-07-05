@@ -13,7 +13,7 @@ const usuario = document.getElementById("usuario");
 const fondo = document.body;
 const nombre = inputNombre.value
 
-function mostrarMensaje(texto, tipo) {
+function mostrarMensaje(texto, tipo, tiempo) {
 
     mensaje.textContent = texto;
 
@@ -28,7 +28,7 @@ function mostrarMensaje(texto, tipo) {
         mensaje.textContent = "";
         mensaje.className = "";
         mensaje.style.display = "none";
-    }, 4000);
+    }, tiempo);
 }
 
 
@@ -42,7 +42,8 @@ btnRegistrar.addEventListener(
         if (nombre && password)
             mostrarMensaje(
                 "Cargando...",
-                "info"
+                "info",
+                40000
             );
 
         {    const respuesta = await fetch(
@@ -67,7 +68,8 @@ btnRegistrar.addEventListener(
 
                 mostrarMensaje(
                     "Usuario creado correctamente",
-                    "exito"
+                    "exito",
+                    4000
                 );
                 inputNombre.value="";
                 inputPassword.value="";
@@ -76,7 +78,8 @@ btnRegistrar.addEventListener(
 
                 mostrarMensaje(
                     "Este usuario ya existe",
-                    "info"
+                    "info",
+                    4000
                 );
                 inputNombre.value="";
                 inputPassword.value="";
@@ -93,7 +96,8 @@ btnLogin.addEventListener("click",
         if (nombre && password) {
             mostrarMensaje(
                 "Cargando...",
-                "info"
+                "info",
+                40000
             );
 
             const respuesta = await fetch(
@@ -116,7 +120,8 @@ btnLogin.addEventListener("click",
 
                 mostrarMensaje(
                     "Conectado exitosamente", 
-                    "exito"
+                    "exito",
+                    4000
                 );
                 inputNombre.value="";
                 inputPassword.value="";
