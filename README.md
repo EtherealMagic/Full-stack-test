@@ -13,7 +13,8 @@ Mi primer proyecto en desarrollo web para probar las distintas etapas de un desa
 ## Requisitos
 - En el documento backend/requirementes.txt
 
-## Modo de uso
+## Modo de uso (local)
 1) Descargar el repositorio en .zip y descomprimirlo.
+2) Cambiar la ruta de conexión en "script.js".
 2) Correr por consola "python app.py" y mantener abierto.
-3) Abrir "index.html" para ver la pagina.
+3) Abrir "index.html" para ver la pagina (En VS code corre sin pasos extra). 
