@@ -1,6 +1,6 @@
 from flask import Flask, request
 from flask_cors import CORS
-from db import crear_base, registrar_en_base, logear_en_base, consultar_cantidad
+from db import crear_base, registrar_en_base, logear_en_base, consultar_cantidad, obtenerNombres
 import os
 
 #actualizar requisitos con  pip freeze > .\requirements.txt antes de pushear 
@@ -39,7 +39,8 @@ def login():
     if logear_en_base(nombre, password):
         return {
             "estado" : "ok",
-            "cantidad" : consultar_cantidad()
+            "cantidad" : consultar_cantidad(),
+            "usuarios" : obtenerNombres()
         }
     else: 
         return {

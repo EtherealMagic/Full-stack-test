@@ -1,4 +1,5 @@
-const url = "https://full-stack-test-bz77.onrender.com"
+// const url = "https://full-stack-test-bz77.onrender.com"
+const url = "http://localhost:5000"
 const inputNombre = document.getElementById("nombre");
 const inputPassword = document.getElementById("password");
 
@@ -31,6 +32,16 @@ function mostrarMensaje(texto, tipo, tiempo) {
     }, tiempo);
 }
 
+function cargarElemento(nombreUsuario) {
+    const nuevaFila = document.createElement("tr");
+    const nuevoCampo = document.createElement("td");
+
+    nuevoCampo.textContent = nombreUsuario;
+    nuevaFila.appendChild(nuevoCampo);
+
+    const ancla = document.getElementById("ancla");
+    ancla.parentNode.insertBefore(nuevaFila, ancla);
+}
 
 btnRegistrar.addEventListener(
     "click",
@@ -43,7 +54,7 @@ btnRegistrar.addEventListener(
             mostrarMensaje(
                 "Cargando...",
                 "info",
-                40000
+                100000
             );
 
         {    const respuesta = await fetch(
@@ -123,12 +134,16 @@ btnLogin.addEventListener("click",
                     "exito",
                     4000
                 );
+
                 inputNombre.value="";
                 inputPassword.value="";
                 contenedor.classList.remove("animacion3")
                 contenedor2.classList.remove("animacion1")
 
                 contenedor.classList.add("animacion1");
+                for (const userName of datos.usuarios) {
+                    cargarElemento(userName)
+                }
                 setTimeout(() => {
                     contenedor2.classList.remove('oculto');
                     contenedor.classList.add('oculto');

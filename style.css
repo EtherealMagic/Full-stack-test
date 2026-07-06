@@ -149,6 +149,26 @@ h1 {
     font-size: 14px;
 }
 
+
+#tablaUsuarios {
+    border-collapse: collapse; 
+    margin: 0 auto;            
+    min-width: 150px;          
+}
+
+#tablaUsuarios th {
+    border: 1px solid black;
+    padding: 5px 10px;
+    background-color: #ddd;
+    text-align: center;
+}
+
+#tablaUsuarios td {
+    border: 1px solid black;
+    padding: 5px 10px;
+    text-align: center;
+}
+
 #btnRegistrar {
     background-color: #4caf50;
     color: white;

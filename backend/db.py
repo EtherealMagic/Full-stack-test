@@ -37,7 +37,7 @@ def registrar_en_base(nombre, password):
             INSERT INTO usuarios(nombre, password)
             VALUES (?, ?)
             """,
-            (nombre, hashed_pasword)
+            (str(nombre), hashed_pasword)
         )
 
         conexion.commit()
@@ -88,4 +88,13 @@ def consultar_cantidad():
         conexion)
     return str(consulta["cantidad"][0])
     
-    
+
+def obtenerNombres():
+    conexion = sqlite3.connect(ruta)
+    consulta = pd.read_sql_query("""
+        SELECT nombre
+        FROM usuarios;
+            """,
+            conexion)
+    valores = consulta["nombre"].tolist()
+    return valores
