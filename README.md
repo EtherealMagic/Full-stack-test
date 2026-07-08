@@ -1,7 +1,7 @@
 # Full-stack-test
 Mi primer proyecto en desarrollo web para probar las distintas etapas de un desarrollo full stack.
 
-[Link de la página](https://etherealmagic.github.io/Full-stack-test/) (la primera llamada al backend puede tardar porque se queda dormido).
+[Link de la página](https://tobiasivangodoy.github.io/Full-stack-test/) (la primera llamada al backend puede tardar porque se queda dormido).
 
 ## Pasos
 1) Crear el HTML
